@@ -8,27 +8,34 @@ import java.util.stream.Collectors;
 
 public class Internship extends University {
 
-    private int minKnowledgeLevel = 50;
-
     public Internship(String name) {
         super(name);
+        this.averageKnowedgeLevel = 0;
     }
 
+    private int averageKnowedgeLevel;
+
     public void inviteNewStudents(List<Student> students) {
-        studentsList = filterStudents(students);
+        this.studentsList = filterStudents(students);
     }
 
     private List<Student> filterStudents(List<Student> students) {
+        this.averageKnowedgeLevel = students.stream()
+                .map(item -> item.getStudentKnowledgeLevel() )
+                .reduce(0, (total, elem) -> total + elem) / students.size();
         return students.stream()
-                .filter(student -> student.getStudentKnowledgeLevel() > minKnowledgeLevel).collect(Collectors.toList());
+                .filter(student -> student.getStudentKnowledgeLevel() > averageKnowedgeLevel).collect(Collectors.toList());
     }
 
-    //setters
-    public void setMinKnowledgeLevel(int level) {
-        if (level >= 0 && level <= 100)
-            minKnowledgeLevel = level;
-        else
-            System.out.println("min 0 | max 100");
+    @Override
+    public void showAllStudentsInfo() {
+        super.showAllStudentsInfo();
+        System.out.println("Necessary level (average in the university): " + this.averageKnowedgeLevel);
+    }
+
+    @Override
+    public void addStudents(Student... students) {
+        System.out.println("Warning! You can only invite students to the internship");
     }
 
 }

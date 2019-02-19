@@ -1,21 +1,16 @@
 package person.consciousness;
 
-public  class Knowledge {
-
-    private int knowledgeLevel;
+public abstract class Knowledge {
 
     public Knowledge(int level) {
         this.knowledgeLevel = level;
     }
 
+    protected int knowledgeLevel;
+
     //getters
     public int getStudentKnowledgeLevel() {
-        return knowledgeLevel;
-    }
-
-    //setters
-    public void setKnowledgeLevel(int level) {
-        knowledgeLevel = level;
+        return this.knowledgeLevel;
     }
 
 }
