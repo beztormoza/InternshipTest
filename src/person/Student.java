@@ -10,8 +10,13 @@ public class Student extends Knowledge {
     }
 
     public Student(String name, int startKnowledgeLevel) {
-        super(startKnowledgeLevel);
+        super(0);
         this.studentName = name;
+        if (startKnowledgeLevel >= 0 && startKnowledgeLevel <= 100)
+            this.knowledgeLevel = startKnowledgeLevel;
+        else
+            System.out.println("Can't set " + startKnowledgeLevel + " knowledge level to " + name
+                                + " (max level 100, min - 0, autoset is 0)");
     }
 
     private String studentName;

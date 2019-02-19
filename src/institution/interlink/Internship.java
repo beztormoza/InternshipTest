@@ -10,32 +10,37 @@ public class Internship extends University {
 
     public Internship(String name) {
         super(name);
-        this.averageKnowedgeLevel = 0;
+        this.averageKnowledgeLevel = 0;
     }
 
-    private int averageKnowedgeLevel;
+    private int averageKnowledgeLevel;
 
-    public void inviteNewStudents(List<Student> students) {
+    public void addStudents(List<Student> students) {
         this.studentsList = filterStudents(students);
     }
 
+    //adding single student to party
+    public void addStudents(Student student) {
+        if (student.getStudentKnowledgeLevel() >= this.averageKnowledgeLevel)
+            this.studentsList.add(student);
+        else
+            System.out.println(student.getStudentName() + "'s knowledge level ("
+                               + student.getStudentKnowledgeLevel() +") isn't enought ("
+                               + this.averageKnowledgeLevel + ")");
+    }
+
     private List<Student> filterStudents(List<Student> students) {
-        this.averageKnowedgeLevel = students.stream()
+        this.averageKnowledgeLevel = students.stream()
                 .map(item -> item.getStudentKnowledgeLevel() )
                 .reduce(0, (total, elem) -> total + elem) / students.size();
         return students.stream()
-                .filter(student -> student.getStudentKnowledgeLevel() > averageKnowedgeLevel).collect(Collectors.toList());
+                .filter(student -> student.getStudentKnowledgeLevel() > averageKnowledgeLevel).collect(Collectors.toList());
     }
 
     @Override
     public void showAllStudentsInfo() {
         super.showAllStudentsInfo();
-        System.out.println("Necessary level (average in the university): " + this.averageKnowedgeLevel);
-    }
-
-    @Override
-    public void addStudents(Student... students) {
-        System.out.println("Warning! You can only invite students to the internship");
+        System.out.println("Necessary level (average in the university): " + this.averageKnowledgeLevel);
     }
 
 }

@@ -15,18 +15,23 @@ public class Application {
         Student Jack = new Student("Jack", 10);
         Jack.setKnowledgeLevel(90);
         Student John = new Student("John");
-        John.setKnowledgeLevel(1000);                // checking for min/max (will show warning message)
+
+        John.setKnowledgeLevel(1000);               // checking for min/max (will show warning message)
+
         universityCHDTU.addStudents(Alice, Jack, John, new Student("Den"));
         System.out.println("");
         System.out.println(universityCHDTU.getName() + "'s list: ");
         universityCHDTU.showAllStudentsInfo();
 
         Internship interlink = new Internship("Interlink");
-        interlink.inviteNewStudents(universityCHDTU.getStudents());
+        interlink.addStudents(universityCHDTU.getStudents());
+        interlink.addStudents(new Student("Grand"));        // if we want to add single person there is another method
         System.out.println("");
         System.out.println("Internship students list: ");
-        interlink.addStudents(new Student("Grand"));
         interlink.showAllStudentsInfo();
 
+        System.out.println("");
+        Student anonim = new Student("Anonim", 1000);
+        System.out.println(anonim.getStudentName() + ": " + anonim.getStudentKnowledgeLevel());
     }
 }

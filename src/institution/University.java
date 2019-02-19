@@ -16,10 +16,10 @@ public class University {
     protected List<Student> studentsList = new ArrayList<Student>();
 
     public void addStudents(Student... students) {
-          List<Student> studentsList = new ArrayList<Student>();
-          for (int i = 0; i < students.length; i++)
-              studentsList.add(students[i]);
-          this.studentsList.addAll(studentsList);
+        List<Student> studentsList = new ArrayList<Student>();
+        for (int i = 0; i < students.length; i++)
+            studentsList.add(students[i]);
+        this.studentsList.addAll(studentsList);
     }
 
     public void showAllStudentsInfo() {
